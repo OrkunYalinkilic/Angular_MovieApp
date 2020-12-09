@@ -1,9 +1,31 @@
+<div class="card" *ngIf="selectedMovie">
+  <!--SelectedMovie varsa sende var ol.(ngIf)-->
+  <div class="card-body">
+
+    <span class="badge badge-warning">
+      id: {{ selectedMovie.id }} name: {{selectedMovie.name}}
+    </span>
+
+    <div class="input-group">
+      <!-- Burada ngModel yani çift yönlü bağlılık kullanabilmek için app module formsmodule eklemeliyiz. -->
+      <!-- ngModel ekledikten sonra selectedMovie.name değeri çift yönlü bağımlı olup anlık değişebilecek. -->
+      <input type="text" [(ngModel)]="selectedMovie.name" class="form-control">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button">Update</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <div class="card">
   <div class="card-header">
     {{title}}
   </div>
   <ul class="list-group list-group-flush">
-    <li *ngFor="let movie of movies" class="list-group-item">
+    <li *ngFor="let movie of movies" (click)="onSelect(movie)" class="list-group-item"
+      [class.active]="movie===selectedMovie">
+      <!--classı active yap movie selectedmovie ya eşitse-->
       <span class="badge badge-primary">{{movie.id}}</span>
       {{movie.name}}
       <span class="close">X</span>

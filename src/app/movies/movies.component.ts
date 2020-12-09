@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Movie } from '../movie';
 import { Movies } from '../movie.datasource';
 
 @Component({
@@ -15,11 +16,10 @@ export class MoviesComponent {
     return this.title;
   }
 
-  /*movie: Movie = {
-    id: 1,
-    name: 'Movie Name'
-  }*/
-
   movies = Movies;
+  selectedMovie: Movie; // böylece bu değeri htmlde kullanabileceğim.
 
+  onSelect(movie: Movie): void {
+    this.selectedMovie = movie;
+  }
 }
