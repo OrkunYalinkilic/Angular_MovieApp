@@ -1,16 +1,23 @@
 import { Component } from '@angular/core';
+import { Movie } from '../movie';
 
 @Component({
   selector: 'movies',
   templateUrl: 'movies.component.html',
-  styles: [`
-         h2{
-         color:red;
-         }
-         `]
+  // template: `<h2>{{"Title: " + getTitle()}}`,
+
 })
 export class MoviesComponent {
 
-}
+  title = "Movie List";
 
- // Burada oluşturdugumuz component'dan app.module un haberi olması gerekiyo.Declaration kısmına ekliyoruz.""
+  getTitle() {
+    return this.title;
+  }
+
+  movie: Movie = {
+    id: 1,
+    name: 'Movie Name'
+  }
+
+}
