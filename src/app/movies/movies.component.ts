@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Movie } from '../movie';
-import { Movies } from '../movie.datasource';
+import { MovieService } from '../movie.service';
 
 @Component({
   selector: 'movies',
@@ -8,16 +8,26 @@ import { Movies } from '../movie.datasource';
   // template: `<h2>{{"Title: " + getTitle()}}`,
 
 })
+
 export class MoviesComponent {
 
   title = "Movie List";
+  movies = Array<Movie>();
+  selectedMovie: Movie; // böylece bu değeri htmlde kullanabileceğim.
+
+  constructor(private movieService: MovieService) { } //servisi inject etme işlemi
+
+  ngOnInit(): void { // constructor dan sonra çalışan metotdur.
+    this.getMovies();
+  }
+
+  getMovies(): void {
+    this.movies = this.movieService.getMovies();
+  }
 
   getTitle() {
     return this.title;
   }
-
-  movies = Movies;
-  selectedMovie: Movie; // böylece bu değeri htmlde kullanabileceğim.
 
   onSelect(movie: Movie): void {
     this.selectedMovie = movie;
