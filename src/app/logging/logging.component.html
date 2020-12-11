@@ -1,0 +1,16 @@
+<div class="card" *ngIf="loggingService.messages.length">
+  <!--ngIf sayesinge liste boş oldugunda bu div tamamen yok olacak.-->
+
+  <div class="card-header">
+    Messages
+  </div>
+
+  <div class="card-body">
+
+    <p *ngFor="let message of loggingService.messages">{{message}}</p>
+
+    <button (click)="loggingService.clear()" class="btn btn-primary btn-sm">Clear</button>
+
+  </div>
+
+</div>
