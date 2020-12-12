@@ -10,6 +10,9 @@ import { LoggingComponent } from './logging/logging.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HttpClientModule } from '@angular/common/http'; // http servislerini kullanabilmek için her zaman ekleriz
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
 
 @NgModule({
   declarations: [
@@ -24,9 +27,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule // routing için oluşturduğum module'ı burada ekledim.
+    AppRoutingModule, // routing için oluşturduğum module'ı burada ekledim.
+    HttpClientModule, // http servislerini kullanabilmek için her zaman ekleriz
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }) // gerçek bir api old zaman bu satıra gerek kalmayacak. Bu satırı sileceğiz.
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { } 

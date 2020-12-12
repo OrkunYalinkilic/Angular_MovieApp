@@ -3,6 +3,7 @@ import { Movie } from './movie';
 import { Movies } from './movie.datasource';
 import { Observable, of } from 'rxjs'; // asenkron olarak gelen verileri işlemek için kullanırız.
 import { LoggingService } from './logging.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'   // Servisi kullanmak için öncelikle servisi kullanacağın yerde inject etmelisin(ctor). Gerisi aynı zaten.
@@ -10,11 +11,18 @@ import { LoggingService } from './logging.service';
 
 export class MovieService {
 
-  constructor(private loggingService: LoggingService) { } // loggingService ' ı inject işlemi yaptım.
+  private apiMoviesUrl = 'api/movies';
+
+  constructor(
+
+    private loggingService: LoggingService, // loggingService ' ı inject işlemi yaptım.
+    private http: HttpClient
+
+  ) { }
 
   getMovies(): Observable<Array<Movie>> {
     this.loggingService.add("MovieService: Listing movies");
-    return of(Movies);
+    return this.http.get<Movie[]>(this.apiMoviesUrl);
   }
 
   getMovie(id: number): Observable<Movie> {
