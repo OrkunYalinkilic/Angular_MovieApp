@@ -35,4 +35,11 @@ export class MoviesComponent {
   onSelect(movie: Movie): void {
     this.selectedMovie = movie;
   }
+
+  add( name:string,imageUrl:string,description:string ):void{
+    this.movieService.add(
+      {name,imageUrl,description} as Movie)
+      .subscribe(movie=>this.movies.push(movie)) // subscribe: böyle bir veri başarılı bir şekilde geldi ise.
+  }
+
 }
