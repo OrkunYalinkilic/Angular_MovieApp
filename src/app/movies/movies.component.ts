@@ -42,4 +42,9 @@ export class MoviesComponent {
       .subscribe(movie=>this.movies.push(movie)) // subscribe: böyle bir veri başarılı bir şekilde geldi ise.
   }
 
+  delete(movie:Movie):void {
+    this.movies = this.movies.filter(m=>m !==movie);
+    this.movieService.delete(movie).subscribe();
+  }
+
 }
