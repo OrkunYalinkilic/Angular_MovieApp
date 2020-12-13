@@ -3,17 +3,27 @@
   <div class="card-body">
 
     <span class="badge badge-warning">
-      id: {{ movie.id }} name: {{movie.name}}
+      id: {{ movie.id }}
     </span>
 
-    <div class="input-group">
-      <!-- Burada ngModel yani çift yönlü bağlılık kullanabilmek için app module formsmodule eklemeliyiz. -->
-      <!-- ngModel ekledikten sonra movie.name değeri çift yönlü bağımlı olup anlık değişebilecek. -->
-      <input type="text" [(ngModel)]="movie.name" class="form-control">
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button">Update</button>
-      </div>
+    <div class="form-group">
+      <label for="name"></label>
+      <input for="text" [(ngModel)]="movie.name" class="form-control">
     </div>
+
+
+    <div class="form-group">
+      <label for="imageUrl"></label>
+      <input for="text" [(ngModel)]="movie.imageUrl" class="form-control">
+    </div>
+
+
+    <div class="form-group">
+      <label for="description"></label>
+      <textarea for="text" [(ngModel)]="movie.description" class="form-control"></textarea>
+    </div>
+
+    <button (click)="save()" class="btn btn-primary btn-sm">Save Changes</button>
 
   </div>
 </div>
